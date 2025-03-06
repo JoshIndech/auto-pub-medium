@@ -1,0 +1,31 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+
+# Set up Selenium WebDriver
+driver = webdriver.Chrome()  # Ensure you have chromedriver installed
+
+# Step 1: Open Medium login page
+driver.get("https://medium.com/m/signin")
+
+# Wait for manual login (or automate it with credentials if possible)
+input("Press Enter after logging in manually...")
+
+# Step 2: Navigate to the "New Story" page
+driver.get("https://medium.com/new-story")
+time.sleep(3)
+
+# Step 3: Find the article title input
+title = driver.find_element("xpath", "//h1")  # Medium's title input
+title.send_keys("Your Article Title Here")
+
+# Step 4: Find the article body input
+body = driver.find_element("xpath", "//div[@aria-label='Post body']")  # Article body
+body.send_keys("Your article content here...")
+
+# Step 5: Click the "Publish" button
+publish_button = driver.find_element("xpath", "//button[contains(text(),'Publish')]")
+publish_button.click()
+
+time.sleep(5)  # Wait before closing
+driver.quit()
